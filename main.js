@@ -20,15 +20,18 @@ const container = document.getElementById('container');
 
 function createTree(id, obj) {
   const ul = document.createElement('ul');
-  for (const tree in obj) {
+
+  Object.entries(obj).forEach(([nodeText, innerText]) => {
     const li = document.createElement('li');
-    li.innerHTML = tree;
+
+    li.textContent = nodeText;
     ul.appendChild(li);
-    if(Object.keys(obj[tree]).length) {
-      createTree(li, obj[tree])
+    if (Object.keys(innerText).length) {
+      createTree(li, innerText);
     }
   }
-  id.appendChild(ul);
+)
+id.appendChild(ul);
 }
 
 createTree(container, data);
